@@ -98,6 +98,7 @@ func signCsrHandler(w http.ResponseWriter, r *http.Request) {
 	wg := sync.WaitGroup{}
 	wg.Add(1) //开一个goroutine
 	go signCsrRoutine(w, csr, &wg)
+	wg.Wait()
 }
 
 func signCsrRoutine(w http.ResponseWriter, csr *ca.CertificateSigningRequest, wg *sync.WaitGroup) {
